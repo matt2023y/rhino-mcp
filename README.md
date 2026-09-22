@@ -4,6 +4,8 @@
 
 本目录可单独复制使用，包含两个 Go 程序、Rhino 插件源码和精简建模 skill。
 
+安装与配置见 [INSTALL.md（中文 / English）](INSTALL.md)。
+
 ```text
 src/
 ├── .build/                    windows / macos 中间编译产物（不提交）
@@ -38,7 +40,7 @@ src/
 
 Go server/tool 优先读取最新的活动端点，其次 `config.json`，都不存在才读取交付根目录 `.env`。本地文件固定指向 127.0.0.1。无效或无法连接的本地端点不自动改连另一台机器；检查 Rhino 状态后处理。Go 程序不读取旧 `rhino.local.mk`，也不以进程连接环境变量覆盖文件。
 
-需要后备连接时，从 `.env.example` 复制为 `.env`，一起填写 `RHINO_HOST`、`RHINO_PORT`、`RHINO_TOKEN`；token 至少 32 字符。可选 `RHINO_REQUEST_TIMEOUT_MS`，默认 120000，上限 600000。`.env` 支持 BOM、CRLF、引号和注释，不执行内容、不展开变量。插件只使用其中的端口/token，其本身仍按现有协议监听允许的本地/LAN 地址。
+需要后备连接时，从 `.env.example` 复制为 `.env`，一起填写 `RHINO_HOST`、`RHINO_PORT`、`RHINO_TOKEN`；token 至少 32 字符。可选 `RHINO_REQUEST_TIMEOUT_MS`，默认 120000，上限 600000。`.env` 支持 BOM、CRLF、引号和注释，不执行内容、不展开变量。只有 MCP server/tool 读取 `.env`；插件从 Rhino 用户目录的配置读取端口/token，并监听允许的本地/LAN 地址。
 
 开发产物位于 `.build/windows` 和 `.build/macos`；发布程序和插件位于 skill 的 `bin` 下。程序从自身路径定位根目录，路径不标准时设置 `RHINO_ROOT`。真实配置和旧模型记录不会复制进发布包。
 
