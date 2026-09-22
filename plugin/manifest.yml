@@ -1,0 +1,10 @@
+name: rhinomcpplugin
+version: $version
+authors:
+  - RhinoMcpPlugin
+description: >
+  Rhino 8 HTTP bridge for Rhino MCP, with authenticated execution on the Rhino
+  UI thread, viewport capture, and persistent endpoint configuration.
+keywords:
+  - rhino
+  - mcp
